@@ -47,13 +47,32 @@
                                                         <div class="modal-body">
                                                             <div class="card shadow-sm rounded">
                                                                 <div class="card-body">
+                                                                    {{-- <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"> --}}
 
-                                                                </div>
-                                                            </div>
-                                                            <div class="card shadow-sm rounded mt-3">
-                                                                <div class="card-body">
-                                                                    <h4>Task 2</h4>
-                                                                    <p>Call the client for feedback on the presentation.</p>
+                                                                        @csrf
+
+                                                                        <div class="form-group">
+                                                                            <label class="font-weight-bold">Task</label>
+                                                                            <input type="text" class="form-control" placeholder="Masukkan Task Anda">
+
+                                                                            <!-- error message untuk image -->
+                                                                            {{-- @error('image')
+                                                                                <div class="alert alert-danger mt-2">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror --}}
+                                                                        </div>
+                                                                        <div class="form-group mb-3">
+                                                                            <label class="font-weight-bold">Deadline</label>
+                                                                            <input type="Date" class="form-control" placeholder="Masukkan deadline Anda">
+
+                                                                            <!-- error message untuk image -->
+                                                                            {{-- @error('image')
+                                                                                <div class="alert alert-danger mt-2">
+                                                                                    {{ $message }}
+                                                                                </div>
+                                                                            @enderror --}}
+                                                                        </div>
                                                                 </div>
                                                             </div>
                                                         </div>
