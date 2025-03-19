@@ -15,7 +15,7 @@
         <div class="row">
             <!-- Main Card -->
             <div class="col-md-12">
-                <div class="card border-0 shadow-sm rounded" style="background-color: rgba(223, 233, 255, 0.8);">
+                <div class="card border-0 shadow-sm rounded" style="background-color: rgba(223, 233, 255, 0.8); ">
                     <div class="card-body">
                         <h2>TODOWZT</h2>
                         <br>
