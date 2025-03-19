@@ -30,13 +30,17 @@
                                             <div class="card-body">
                                                 <h4>Do</h4>
                                                 <!-- Inner Card (nested inside the outer card) -->
-                                                <div class="card mt-3 border-0 shadow-sm rounded" style="background-color: #28a745; color: white; width: 250px; padding: 10px;">
+                                                <div class="card mt-3 border-0 shadow-sm rounded" style="background-color: #28a745; color: white;">
                                                     <div class="card-body">
-                                                        <h6>Task 1</h6>
+                                                        <!-- Checkbox inside the card -->
+                                                        <div class="form-check">
+                                                            <input type="checkbox" class="form-check-input" id="task1">
+                                                            <label class="form-check-label" for="task1" style="font-size: large">make Back-end tdl</label>
+                                                            <label class="form-check-label" for="task1" style="font-size: small">Mark as complete</label>
                                                         </div>
-                                                        <p>Complete the report by Friday.</p>
                                                     </div>
                                                 </div>
+
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popupCard">
                                                     <i class="bi bi-plus-circle-fill"></i> Add New List
                                                 </button>
