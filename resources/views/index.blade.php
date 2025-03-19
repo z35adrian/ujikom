@@ -20,66 +20,82 @@
                         <br>
                         <br>
                         <center>
-                            <h3>Your To Do List</h3>
+                            <h3 style="font-weight: bold;">Your To Do List</h3>
                         </center>
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group mb-3">
-                                    <div class="card mt-4 border-0 shadow-sm rounded" style="background-color: #0623DB; color: white;">
-                                        <div class="card-body">
-                                            <h4>To</h4>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popupCard">
-                                                <i class="bi bi-plus-circle-fill"></i> Add New List
-                                            </button>
-
-                                            <!-- Modal (Popup Card) -->
-                                            <div class="modal fade" id="popupCard" tabindex="-1" role="dialog" aria-labelledby="popupCardLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content rounded">
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" style="color: black" id="popupCardLabel">Add New List</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
+                        <div class="container mt-4">
+                            <div class="row justify-content-center">
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <div class="card mt-4 border-0 shadow-sm rounded" style="background-color: #0623DB; color: white;">
+                                            <div class="card-body">
+                                                <h4>Do</h4>
+                                                <!-- Inner Card (nested inside the outer card) -->
+                                                <div class="card mt-3 border-0 shadow-sm rounded" style="background-color: #28a745; color: white; width: 250px; padding: 10px;">
+                                                    <div class="card-body">
+                                                        <h6>Task 1</h6>
                                                         </div>
-                                                        <!-- Modal Body -->
-                                                        <div class="modal-body">
-                                                            <div class="card shadow-sm rounded">
-                                                                <div class="card-body">
-                                                                    {{-- <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                                                        <p>Complete the report by Friday.</p>
+                                                    </div>
+                                                </div>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#popupCard">
+                                                    <i class="bi bi-plus-circle-fill"></i> Add New List
+                                                </button>
+                                                <!-- Modal (Popup Card) -->
+                                                <div class="modal fade" id="popupCard" tabindex="-1" role="dialog" aria-labelledby="popupCardLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content rounded">
+                                                            <!-- Modal Header -->
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" style="color: black" id="popupCardLabel">Add New List</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <!-- Modal Body -->
+                                                            <div class="modal-body">
+                                                                <div class="card shadow-sm rounded">
+                                                                    <div class="card-body">
+                                                                        {{-- <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data"> --}}
+                                                                            @csrf
 
-                                                                        @csrf
-
-                                                                        <div class="form-group">
-                                                                            <label class="font-weight-bold">Task</label>
-                                                                            <input type="text" class="form-control" placeholder="Masukkan Task Anda">
-
-                                                                            <!-- error message untuk image -->
-                                                                            {{-- @error('image')
-                                                                                <div class="alert alert-danger mt-2">
-                                                                                    {{ $message }}
+                                                                            <div class="form-group">
+                                                                                <label class="font-weight-bold">Task</label>
+                                                                                <input type="text" class="form-control @error('task') is-invalid @enderror" name="task" placeholder="Masukkan Task Anda">
+                                                                                @error('task')
+                                                                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="font-weight-bold">Deadline</label>
+                                                                                <input type="Date" class="form-control @error('deadline') is-invalid @enderror" name="deadline" placeholder="Masukkan deadline Anda">
+                                                                                @error('deadline')
+                                                                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="font-weight-bold">Priority Set</label>
+                                                                                <!-- Radio Buttons -->
+                                                                                <div class="form-check">
+                                                                                    <input type="radio" id="priority" name="priority" value="high" class="form-check-input">
+                                                                                    <label for="priority" class="form-check-label @error('priority') is-invalid @enderror" name="priority">Priority</label>
                                                                                 </div>
-                                                                            @enderror --}}
-                                                                        </div>
-                                                                        <div class="form-group mb-3">
-                                                                            <label class="font-weight-bold">Deadline</label>
-                                                                            <input type="Date" class="form-control" placeholder="Masukkan deadline Anda">
-
-                                                                            <!-- error message untuk image -->
-                                                                            {{-- @error('image')
-                                                                                <div class="alert alert-danger mt-2">
-                                                                                    {{ $message }}
+                                                                                <div class="form-check">
+                                                                                    <input type="radio" id="no_priority" name="no_priority" value="no_priority" class="form-check-input">
+                                                                                    <label for="no_priority" class="form-check-label">No Priority</label>
                                                                                 </div>
-                                                                            @enderror --}}
-                                                                        </div>
+                                                                                @error('priority')
+                                                                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                                                @enderror
+                                                                            </div>
+                                                                            <!-- Modal Footer -->
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <!-- Modal Footer -->
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="button" class="btn btn-primary">Submit</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -87,29 +103,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group mb-3">
-                                    <div class="card mt-4 border-0 shadow-sm rounded" style="background-color: #0623DB; color: white;">
-                                        <div class="card-body">
-                                            <h4>Do</h4>
-                                            <a href="" class="btn btn-md btn-primary mb-3">
-                                                <i class="bi bi-plus-circle-fill"></i> Add New List
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group mb-3">
-                                    <div class="card mt-4 border-0 shadow-sm rounded" style="background-color: #0623DB; color: white;">
-                                        <div class="card-body">
-                                            <h4>Done</h4>
-                                            <!-- Button to trigger the popup card -->
 
-                                            <a href="" class="btn btn-md btn-primary mb-3">
-                                                <i class="bi bi-plus-circle-fill"></i> Add New List
-                                            </a>
+                                <!-- Second Card (Done Column) -->
+                                <div class="col-md-4">
+                                    <div class="form-group mb-3">
+                                        <div class="card mt-4 border-0 shadow-sm rounded" style="background-color: #0623DB; color: white;">
+                                            <div class="card-body">
+                                                <h4>Done</h4>
+                                                <br>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
