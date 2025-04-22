@@ -228,4 +228,52 @@
 
 </body>
 </html>
+<ul class="list-group list-group-flush mt-3" id="todo-list">
+    @foreach ($tasks->where('completed', false) as $task)
+        <li class="list-group-item d-flex align-items-center justify-content-between" draggable="true" ondragstart="drag(event)" id="task-{{ $task->id }}">
+            <form action="{{ route('task.update', $task->id) }}" method="POST" class="d-flex align-items-center w-100 justify-content-between">
+                @csrf
+                @method('PUT')
+                <div class="form-check w-100">
+                    <input type="checkbox" class="form-check-input me-2" name="completed" value="1" onchange="this.form.submit()" />
+                    <label class="form-check-label text-sm" style="font-size:0.9rem;">
+                        {{ $task->task_name }} 
+                        <br />
+                        <small class="text-muted">{{ $task->deadline }}</small> -
+                        <small class="text-muted">{{ $task->priority ? 'Priority' : 'Normal' }}</small>
+                    </label>
+                </div>
+            </form>
+            <!-- Edit and Delete buttons -->
+        </li>
+    @endforeach
+</ul>
+<script>
+    let dragged;
+
+    function drag(event) {
+        dragged = event.target;
+        event.dataTransfer.effectAllowed = "move";
+    }
+
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        event.preventDefault();
+        if (event.target.className.includes('list-group-item')) {
+            const target = event.target;
+            const parent = target.parentNode;
+
+            // Swap the dragged item with the target item
+            parent.insertBefore(dragged, target.nextSibling);
+        }
+    }
+
+    // Add event listeners to the list
+    const todoList = document.getElementById('todo-list');
+    todoList.addEventListener('dragover', allowDrop);
+    todoList.addEventListener('drop', drop);
+</script>
 
